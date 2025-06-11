@@ -1,0 +1,259 @@
+USE [master]
+GO
+/****** Object:  Database [RegistroAsistentes]    Script Date: 16/10/2024 14:58:30 ******/
+CREATE DATABASE [RegistroAsistentes]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'RegistroAsistentes', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\RegistroAsistentes.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'RegistroAsistentes_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\RegistroAsistentes_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [RegistroAsistentes] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [RegistroAsistentes].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [RegistroAsistentes] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [RegistroAsistentes] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [RegistroAsistentes] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [RegistroAsistentes] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [RegistroAsistentes] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [RegistroAsistentes] SET  MULTI_USER 
+GO
+ALTER DATABASE [RegistroAsistentes] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [RegistroAsistentes] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [RegistroAsistentes] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [RegistroAsistentes] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [RegistroAsistentes] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [RegistroAsistentes] SET QUERY_STORE = OFF
+GO
+USE [RegistroAsistentes]
+GO
+/****** Object:  Table [dbo].[DetalleTaller]    Script Date: 16/10/2022 14:58:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DetalleTaller](
+	[alumno] [varchar](10) NOT NULL,
+	[taller] [varchar](9) NOT NULL,
+	[hora] [time](5) NOT NULL,
+	[certificacion] [varchar](2) NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Estudiantes]    Script Date: 16/10/2022 14:58:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Estudiantes](
+	[codigo] [varchar](10) NOT NULL,
+	[apellidos] [varchar](50) NOT NULL,
+	[nombres] [varchar](50) NOT NULL,
+	[carrera] [varchar](50) NOT NULL,
+	[ciclo] [int] NOT NULL,
+ CONSTRAINT [PK_Estudiantes] PRIMARY KEY CLUSTERED 
+(
+	[codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Talleres]    Script Date: 16/10/2022 14:58:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Talleres](
+	[codigo] [varchar](9) NOT NULL,
+	[descripcion] [varchar](50) NOT NULL,
+	[fecha] [date] NOT NULL,
+	[hora] [time](5) NOT NULL,
+	[lugar] [varchar](5) NOT NULL,
+	[duracion] [int] NOT NULL,
+ CONSTRAINT [PK_Talleres] PRIMARY KEY CLUSTERED 
+(
+	[codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[DetalleTaller] ([alumno], [taller], [hora], [certificacion]) VALUES (N'2005102509', N'201601-01', CAST(N'09:10:00' AS Time), N'SI')
+GO
+INSERT [dbo].[DetalleTaller] ([alumno], [taller], [hora], [certificacion]) VALUES (N'2005102509', N'201601-02', CAST(N'08:50:00' AS Time), N'NO')
+GO
+INSERT [dbo].[DetalleTaller] ([alumno], [taller], [hora], [certificacion]) VALUES (N'2005103151', N'201601-03', CAST(N'16:00:00' AS Time), N'SI')
+GO
+INSERT [dbo].[DetalleTaller] ([alumno], [taller], [hora], [certificacion]) VALUES (N'2005103768', N'201601-03', CAST(N'16:15:00' AS Time), N'SI')
+GO
+INSERT [dbo].[DetalleTaller] ([alumno], [taller], [hora], [certificacion]) VALUES (N'2006100584', N'201601-05', CAST(N'17:50:00' AS Time), N'SI')
+GO
+INSERT [dbo].[Estudiantes] ([codigo], [apellidos], [nombres], [carrera], [ciclo]) VALUES (N'2005102509', N'REYES', N'ANITA', N'ADMINISTRACIÓN', 7)
+GO
+INSERT [dbo].[Estudiantes] ([codigo], [apellidos], [nombres], [carrera], [ciclo]) VALUES (N'2005103151', N'MARTINEZ', N'PEDRO', N'ADMINISTRACIÓN', 5)
+GO
+INSERT [dbo].[Estudiantes] ([codigo], [apellidos], [nombres], [carrera], [ciclo]) VALUES (N'2005103768', N'ROJAS', N'LUIS', N'CONTABILIDAD', 7)
+GO
+INSERT [dbo].[Estudiantes] ([codigo], [apellidos], [nombres], [carrera], [ciclo]) VALUES (N'2006100584', N'ROBLES', N'JUAN', N'INGENIERÍA ELÉCTRICA', 9)
+GO
+INSERT [dbo].[Estudiantes] ([codigo], [apellidos], [nombres], [carrera], [ciclo]) VALUES (N'2006100595', N'LOPEZ', N'ANDRES', N'INGENIERÍA AMBIENTAL', 10)
+GO
+INSERT [dbo].[Talleres] ([codigo], [descripcion], [fecha], [hora], [lugar], [duracion]) VALUES (N'201601-01', N'INDUCCIÓN PARA PRÁCTICAS', CAST(N'2017-05-24' AS Date), CAST(N'09:00:00' AS Time), N'E-101', 2)
+GO
+INSERT [dbo].[Talleres] ([codigo], [descripcion], [fecha], [hora], [lugar], [duracion]) VALUES (N'201601-02', N'IMAGEN Y MARKETING PERSONAL', CAST(N'2017-05-25' AS Date), CAST(N'09:00:00' AS Time), N'E-202', 1)
+GO
+INSERT [dbo].[Talleres] ([codigo], [descripcion], [fecha], [hora], [lugar], [duracion]) VALUES (N'201601-03', N'CÓMO REDACTAR UN CV', CAST(N'2017-05-25' AS Date), CAST(N'16:10:00' AS Time), N'G-101', 2)
+GO
+INSERT [dbo].[Talleres] ([codigo], [descripcion], [fecha], [hora], [lugar], [duracion]) VALUES (N'201601-04', N'ENTREVISTA LABORAL', CAST(N'2017-05-26' AS Date), CAST(N'16:10:00' AS Time), N'G-101', 2)
+GO
+INSERT [dbo].[Talleres] ([codigo], [descripcion], [fecha], [hora], [lugar], [duracion]) VALUES (N'201601-05', N'MANEJO DE LA BOLSA DE TRABAJO', CAST(N'2017-05-26' AS Date), CAST(N'17:50:00' AS Time), N'H-302', 4)
+GO
+ALTER TABLE [dbo].[DetalleTaller]  WITH CHECK ADD  CONSTRAINT [FK_DetalleTaller_Estudiantes] FOREIGN KEY([alumno])
+REFERENCES [dbo].[Estudiantes] ([codigo])
+GO
+ALTER TABLE [dbo].[DetalleTaller] CHECK CONSTRAINT [FK_DetalleTaller_Estudiantes]
+GO
+ALTER TABLE [dbo].[DetalleTaller]  WITH CHECK ADD  CONSTRAINT [FK_DetalleTaller_Talleres] FOREIGN KEY([taller])
+REFERENCES [dbo].[Talleres] ([codigo])
+GO
+ALTER TABLE [dbo].[DetalleTaller] CHECK CONSTRAINT [FK_DetalleTaller_Talleres]
+GO
+/****** Object:  StoredProcedure [dbo].[pb_eliminar]    Script Date: 16/10/2022 14:58:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Roger Quispe		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[pb_eliminar] 
+@codigo varchar(10)
+AS
+BEGIN
+	delete from Estudiantes
+	where codigo=@codigo
+END
+GO
+/****** Object:  StoredProcedure [dbo].[pb_listar]    Script Date: 16/10/2022 14:58:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Roger Quispe		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[pb_listar] 
+
+AS
+BEGIN
+	select Codigo, Apellidos, Nombres, Carrera, Ciclo from Estudiantes
+END
+GO
+/****** Object:  StoredProcedure [dbo].[pb_modificar]    Script Date: 16/10/2022 14:58:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Roger Quispe		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[pb_modificar] 
+@codigo varchar(10)
+,@apellidos varchar(50)
+,@nombres varchar(50)
+,@carrera varchar(50)
+,@ciclo int
+AS
+BEGIN
+	update Estudiantes
+	set
+	apellidos=@apellidos,
+	nombres=@nombres,
+	carrera=@carrera,
+	ciclo=@ciclo
+	where codigo=@codigo
+END
+GO
+/****** Object:  StoredProcedure [dbo].[pb_nuevo]    Script Date: 16/10/2022 14:58:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Roger Quispe		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[pb_nuevo] 
+@codigo varchar(10)
+,@apellidos varchar(50)
+,@nombres varchar(50)
+,@carrera varchar(50)
+,@ciclo int
+AS
+BEGIN
+	insert into Estudiantes
+	values(@codigo, @apellidos,@nombres,@carrera,@ciclo)
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [RegistroAsistentes] SET  READ_WRITE 
+GO

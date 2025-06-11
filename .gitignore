@@ -1,0 +1,46 @@
+# Archivos generados por Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Binarios y compilados
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.mdb
+
+# Archivos de bases de datos locales
+*.mdf
+*.ldf
+
+# Archivos de configuración local
+*.dbmdl
+*.vssscc
+*.vspscc
+
+# Configuración de paquetes NuGet
+packages/
+*.nupkg
+
+# Archivos de publicación
+publish/
+*.Publish.xml
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+
+# Archivos de VS Code (si usas)
+.vscode/
+
+# Archivos de dependencias ocultas
+_ReSharper.*
+*.DotSettings.user
+
