@@ -1,4 +1,8 @@
 ﻿Imports System.Data.SqlClient
+
+''' <summary>
+''' Autor: Roger Quispe
+''' </summary>
 Public Class Datos
     Dim cnx As New SqlConnection("server=localhost\SQLEXPRESS;integrated security=true;Database=RegistroAsistentes")
 
