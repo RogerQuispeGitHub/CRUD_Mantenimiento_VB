@@ -2,6 +2,8 @@
 
 ''' <summary>
 ''' Autor: Roger Quispe
+''' Fecha: 12/06/2025
+''' Descripción: Clase para manejar las operaciones de base de datos relacionadas con los estudiantes.
 ''' </summary>
 Public Class Datos
     Dim cnx As New SqlConnection("server=localhost\SQLEXPRESS;integrated security=true;Database=RegistroAsistentes")
